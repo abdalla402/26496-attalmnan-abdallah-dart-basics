@@ -17,10 +17,28 @@ int countVowels(String text) {
   return count;
 }
 
+String initials(String fullName) {
+  // by A.A.A.
+  String trimmed = fullName.trim();
+  if (trimmed.isEmpty) return '';
+
+  List<String> parts = trimmed.split(RegExp(r'\s+'));
+  String result = '';
+  for (int i = 0; i < parts.length; i++) {
+    result += '${parts[i][0].toUpperCase()}.';
+  }
+  return result;
+}
+
 void main() {
   print('Reg no: $regNo | D=$d | T=$t');
 
   // B2: Count vowels in full name
   String fullName = 'Abdallah Awad Attalmnan';
   print('$fullName has ${countVowels(fullName)} vowels');
+
+  // B3: Initials tests
+  print(initials(fullName));
+  print(initials('  ana   uwase  '));
+  print(initials('   '));
 }
