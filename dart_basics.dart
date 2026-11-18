@@ -41,6 +41,30 @@ void drawTriangle(int height) {
   }
 }
 
+int momoFee(int amount) {
+  // by A.A.A.
+  if (amount <= 0) return -1;
+  if (amount <= 1000) return 20;
+  if (amount <= 10000) return 100;
+  if (amount <= 150000) return 250;
+  return 1500;
+}
+
+String maskPhone(String phone) {
+  // by A.A.A.
+  if (phone.length != 10) return 'INVALID';
+
+  String firstThree = phone.substring(0, 3);
+  String lastTwo = phone.substring(8);
+  String maskedMiddle = '';
+  int idx = 3;
+  while (idx < 8) {
+    maskedMiddle += '*';
+    idx++;
+  }
+  return '$firstThree$maskedMiddle$lastTwo';
+}
+
 void main() {
   print('Reg no: $regNo | D=$d | T=$t');
 
@@ -57,4 +81,17 @@ void main() {
   drawTriangle(d + 3);
   drawTriangle(0);
   drawTriangle(-2);
+
+  // D2: MoMo receipt printer (using while loop)
+  int i = 1;
+  int totalFees = 0;
+  String phone = '0788123456';
+  while (i <= d + 3) {
+    int amount = i * 4000 + t * 100;
+    int fee = momoFee(amount);
+    totalFees += fee;
+    print('Receipt $i $amount RWF | fee $fee RWF | to ${maskPhone(phone)}');
+    i++;
+  }
+  print('Total fees: $totalFees RWF');
 }
